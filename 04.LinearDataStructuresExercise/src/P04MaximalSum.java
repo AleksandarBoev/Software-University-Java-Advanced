@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class P04MaximalSum { //TODO fix this
+public class P04MaximalSum {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -26,22 +26,21 @@ public class P04MaximalSum { //TODO fix this
         int biggestSum = Integer.MIN_VALUE;
 
         int[][] biggestSumSubmatrix = new int[submatrixSize][submatrixSize];
+        int bounds = submatrixSize - 1;
 
-        for (int row = 0; row < matrix.length - submatrixSize; row++) { // matrix.length - 2
-            for (int col = 0; col < matrix[0].length - submatrixSize; col++) { // matrix[0].length - 2
-                int currentSum = 0;
-                for (int i = row; i < row + submatrixSize - 1; i++) { // 0, 0 + 3 == 3, 3 (bez nego)
-                    for (int j = col; j < col + submatrixSize - 1; j++) {
-                        currentSum += matrix[i][j];
+        for (int row = 0; row < matrix.length - bounds; row++) {
+            for (int col = 0; col < matrix[0].length - bounds; col++) {
+                int[][] temporaryMatrix = new int[submatrixSize][submatrixSize];
+                for (int row1 = 0; row1 < temporaryMatrix.length; row1++) { // filling a temporary matrix with the values of the original big matrix
+                    for (int col1 = 0; col1 < temporaryMatrix[0].length; col1++) {
+                        temporaryMatrix[row1][col1] = matrix[row + row1][col + col1];
                     }
                 }
 
+                int currentSum = sumMatrix(temporaryMatrix);
                 if (currentSum > biggestSum) {
-                    for (int i = 0; i < biggestSumSubmatrix.length; i++) {
-                        for (int j = 0; j < biggestSumSubmatrix.length; j++) {
-                            biggestSumSubmatrix[i][j] = matrix[row + i][row + j];
-                        }
-                    }
+                    biggestSum = currentSum;
+                    biggestSumSubmatrix = temporaryMatrix;
                 }
             }
         }

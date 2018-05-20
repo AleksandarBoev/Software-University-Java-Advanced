@@ -6,6 +6,10 @@ public class P06StringMatrixRotation {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        String[] command = scanner.nextLine().split("[()]");
+        int degrees = Integer.parseInt(command[1]);
+
+
         List<String> inputs = new ArrayList<>();
         String input;
         int longestString = 0;
@@ -33,24 +37,67 @@ public class P06StringMatrixRotation {
             row++;
         }
 
+        printMatrix(flip(matrix, degrees));
+
         //main ends here
     }
 
-//    static char[][] flip90(char[][] matrix) {
-//
-//    }
-//
-//    static char[][] flip180(char[][] matrix) {
-//
-//    }
-//
-//    static char[][] flip270(char[][] matrix) {
-//
-//    }
-//
-//    static char[][] flip(char[][] matrix, int degrees) {
-//        //switch case
-//        //degrees %= 90
-//    }
+    static char[][] flip90(char[][] matrix) { // works
+        char[][] flippedMatrix = new char[matrix[0].length][matrix.length];
+
+        for (int i = 0; i < flippedMatrix.length; i++) {
+            for (int j = 0; j < flippedMatrix[0].length; j++) {
+                flippedMatrix[i][j] = matrix[matrix.length - 1 - j][i];
+            }
+        }
+
+        return flippedMatrix;
+    }
+
+    static char[][] flip180(char[][] matrix) { //works
+        char[][] flippedMatrix = new char[matrix.length][matrix[0].length];
+
+        for (int i = 0; i < flippedMatrix.length; i++) {
+            for (int j = 0; j < flippedMatrix[0].length; j++) {
+                flippedMatrix[i][j] = matrix[matrix.length - 1 - i][matrix[0].length - 1 - j];
+            }
+        }
+
+        return flippedMatrix;
+    }
+
+    static char[][] flip270(char[][] matrix) {
+        char[][] flippedMatrix = new char[matrix[0].length][matrix.length];
+
+        for (int i = 0; i < flippedMatrix.length; i++) {
+            for (int j = 0; j < flippedMatrix[0].length; j++) {
+                flippedMatrix[i][j] = matrix[j][matrix[0].length - 1 - i];
+            }
+        }
+
+        return flippedMatrix;
+    }
+
+    static char[][] flip(char[][] matrix, int degrees) {
+        degrees %= 360;
+        if (degrees == 90) {
+            return flip90(matrix);
+        } else if (degrees == 180) {
+            return flip180(matrix);
+        } else if (degrees == 270) {
+            return flip270(matrix);
+        } else {
+            return matrix;
+        }
+    }
+
+    static void printMatrix(char[][] matrix) {
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[0].length; col++) {
+                System.out.print(matrix[row][col]);
+            }
+            System.out.println();
+        }
+    }
 
 }

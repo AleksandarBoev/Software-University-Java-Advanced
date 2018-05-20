@@ -7,12 +7,15 @@ public class P02SplitByWordCasing { // TODO code gives 75/100
         Scanner scanner = new Scanner(System.in);
 
         //,;:.!()"'\/[]
-        String[] tokens = scanner.nextLine().split("[,;:.!()\"'/\\[\\]\\s\\\\]+"); //wtf
+        String[] tokens = scanner.nextLine().split("[,;:.!()\"'/\\[\\]\\s\\\\]+");
         List<String> lowerCaseWords = new ArrayList<>();
         List<String> upperCaseWords = new ArrayList<>();
         List<String> mixedCaseWords = new ArrayList<>();
 
         for (int i = 0; i < tokens.length; i++) {
+            if ("".equals(tokens[i]))
+                continue;
+
             if (!containsOnlyLetters(tokens[i])) { // contains something, which is NOT a letter
                 mixedCaseWords.add(tokens[i]);
                 continue;
