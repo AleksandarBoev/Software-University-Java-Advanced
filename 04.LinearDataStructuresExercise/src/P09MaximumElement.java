@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-
+//test input:
 //9
 //1 97
 //2
@@ -21,6 +21,7 @@ public class P09MaximumElement { //TODO optimize
         ArrayDeque<Integer> stack = new ArrayDeque<>();
 
         int numberOfCommands = Integer.parseInt(reader.readLine());
+        int maxValue = Integer.MIN_VALUE;
 
         for (int i = 0; i < numberOfCommands; i++) {
             String[] commands = reader.readLine().split(" ");
@@ -29,12 +30,16 @@ public class P09MaximumElement { //TODO optimize
             switch (command) {
                 case 1:
                     int valueToPush = Integer.parseInt(commands[1]);
+                    if (valueToPush > maxValue) {
+                        maxValue = valueToPush;
+                    }
                     stack.push(valueToPush);
                     break;
 
                 case 2:
-                    if (!stack.isEmpty())
-                        stack.pop();
+                    if (stack.pop() == maxValue) {
+                        maxValue = getMaxValue(stack);
+                    }
                     break;
 
                 case 3:
@@ -62,13 +67,18 @@ public class P09MaximumElement { //TODO optimize
 //                maxValue = value;
 //            }
 //        }
-        for (int i = 0; i < stack.size(); i++) {
-            int currentValue = stack.peek();
-            if (currentValue > maxValue) {
-                maxValue = currentValue;
+//        for (int i = 0; i < stack.size(); i++) {
+//            int currentValue = stack.peek();
+//            if (currentValue > maxValue) {
+//                maxValue = currentValue;
+//            }
+//
+//            stack.add(stack.remove());
+//        }
+        for (Integer value:stack) {
+            if (value > maxValue) {
+                maxValue = value;
             }
-
-            stack.add(stack.remove());
         }
 
 
