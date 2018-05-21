@@ -290,12 +290,12 @@
       <workItem from="1526714223783" duration="23539000" />
       <workItem from="1526762765503" duration="607000" />
       <workItem from="1526798366349" duration="11061000" />
-      <workItem from="1526824298427" duration="1052000" />
+      <workItem from="1526824298427" duration="1660000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48922000" />
+    <option name="totallyTimeSpent" value="49530000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -320,7 +320,7 @@
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32849163" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32849163" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />

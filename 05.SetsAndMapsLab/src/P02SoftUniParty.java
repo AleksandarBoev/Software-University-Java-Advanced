@@ -7,34 +7,21 @@ public class P02SoftUniParty {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        Set<String> regularGuests = new TreeSet<>();
-        Set<String> vipGuests = new HashSet<>();
+        Set<String> guests = new TreeSet<>();
 
         String input;
         while (!"PARTY".equals(input = scanner.nextLine())) {
-            if (Character.isDigit(input.charAt(0))) {
-                vipGuests.add(input);
-            } else {
-                regularGuests.add(input);
-            }
+            guests.add(input);
         }
 
         while (!"END".equals(input = scanner.nextLine())) {
-            if (Character.isDigit(input.charAt(0))) {
-                vipGuests.remove(input);
-            } else {
-                regularGuests.remove(input);
-            }
+            guests.remove(input);
         }
 
-        System.out.println(regularGuests.size() + vipGuests.size());
+        System.out.println(guests.size());
 
-        for (String vipGuest : vipGuests) {
-            System.out.println(vipGuest);
-        }
-
-        for (String regularGuest : regularGuests) {
-            System.out.println(regularGuest);
+        for (String guest : guests) {
+            System.out.println(guest);
         }
 
         //main ends here
