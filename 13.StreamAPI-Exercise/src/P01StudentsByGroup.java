@@ -32,9 +32,18 @@ public class P01StudentsByGroup {
             }
         }
 
-//        groupsStudents.entrySet().stream()
-//                .filter(s -> s.getKey() == 2)
-//                .sorted()
+        reader.close();
+
+        groupsStudents.entrySet().stream() // go through the kvp map
+                .filter(kvp -> kvp.getKey() == 2) // remove all kvp values, which keys are not equal to '2'
+                .forEach(kvp -> { // the remaining kvp's (the ones which key is equal to '2', just one kvp actually left)
+                    kvp.getValue().stream() // make a second stream through the List of Pair of the remaining kvp
+                            .sorted((names1, names2) -> { // sort that list
+                                return names1.getKey().compareTo(names2.getKey());
+                            }).forEach(name -> { // on this sorted list print some stuff
+                        System.out.printf("%s %s%n", name.getKey(), name.getValue());
+                    });
+                });
 
         //main ends here
     }

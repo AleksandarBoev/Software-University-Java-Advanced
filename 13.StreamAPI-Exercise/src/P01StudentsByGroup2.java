@@ -17,6 +17,8 @@ public class P01StudentsByGroup2 {
             students.add(currentStudent);
         }
 
+        reader.close();
+
         students.stream()
                 .filter(s -> s.getGroup() == 2)
                 .sorted((s1, s2) -> {

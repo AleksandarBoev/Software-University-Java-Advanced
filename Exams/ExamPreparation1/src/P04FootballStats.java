@@ -43,14 +43,14 @@ public class P04FootballStats {
             input = reader.readLine();
         }
 
-        String[] outputTeams = reader.readLine().split(" ");
+        String[] outputTeams = reader.readLine().split(", ");
         for (int i = 0; i < outputTeams.length; i++) {
             String currentTeam = outputTeams[i];
             teamOpponentScore.get(outputTeams[i]).stream()
                     .sorted((pair1, pair2) -> {
                         return pair1.getKey().compareTo(pair2.getKey());
                     }).forEach(pair -> {
-                System.out.printf("%s - %sd -> %s", currentTeam, pair.getKey(), pair.getValue());
+                System.out.printf("%s - %s -> %s%n", currentTeam, pair.getKey(), pair.getValue());
             });
         }
 
