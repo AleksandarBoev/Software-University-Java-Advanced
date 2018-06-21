@@ -1,16 +1,20 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class P13RecursiveFibonacci {
-    public static void main(String[] args) { //TODO optimize for time
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws IOException { //TODO optimize for time
+         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = Integer.parseInt(scanner.nextLine());
+        int n = Integer.parseInt(reader.readLine());
+        reader.close();
+
         if (n < 1) {
             System.out.println(0);
             return;
         }
         System.out.println(getFibonacci(n + 1));
-        System.out.println(getFibonacciFaster(n));
 
         //main ends here
     }
@@ -22,14 +26,6 @@ public class P13RecursiveFibonacci {
         int fibonacciOperand1 = getFibonacci(n - 1);
         int fibonacciOperand2 = getFibonacci(n - 2);
         return fibonacciOperand1 + fibonacciOperand2;
-    }
-
-    static int getFibonacciFaster(int n) {
-        if (n == 1 || n == 2) {
-            return 1;
-        }
-
-        return (getFibonacciFaster(n - 1) + getFibonacciFaster(n - 2)) * n;
     }
 
 }

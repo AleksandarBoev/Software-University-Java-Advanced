@@ -2,23 +2,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-//test input:
-//9
-//1 97
-//2
-//1 20
-//2
-//1 26
-//1 20
-//3
-//1 91
-//3
 
-public class P09MaximumElement { //TODO optimize
+public class P09MaximumElement {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         ArrayDeque<Integer> stack = new ArrayDeque<>();
+        StringBuilder sb = new StringBuilder();
 
         int numberOfCommands = Integer.parseInt(reader.readLine());
         int maxValue = Integer.MIN_VALUE;
@@ -43,38 +33,24 @@ public class P09MaximumElement { //TODO optimize
                     break;
 
                 case 3:
-                    System.out.println(getMaxValue(stack));
+                    sb.append(maxValue).append(System.lineSeparator()); // if I use System.out.println() I will hit timelimit on last 2 tests
                     break;
             }
         }
+        reader.close();
 
-
+        System.out.println(sb);
 
         //main ends here
 
     }
 
-    static Integer getMaxValue(ArrayDeque<Integer> stack) {
-        Integer maxValue = Integer.MIN_VALUE;
-//        ArrayDeque<Integer> temporaryStack = stack.clone();
-//
-//        if (temporaryStack.isEmpty())
-//            return null;
-//
-//        while (!temporaryStack.isEmpty()) {
-//            int value = temporaryStack.pop();
-//            if (value > maxValue) {
-//                maxValue = value;
-//            }
-//        }
-//        for (int i = 0; i < stack.size(); i++) {
-//            int currentValue = stack.peek();
-//            if (currentValue > maxValue) {
-//                maxValue = currentValue;
-//            }
-//
-//            stack.add(stack.remove());
-//        }
+    static int getMaxValue(ArrayDeque<Integer> stack) {
+        if (stack.isEmpty()) {
+            return 0;
+        }
+        int maxValue = Integer.MIN_VALUE;
+
         for (Integer value:stack) {
             if (value > maxValue) {
                 maxValue = value;

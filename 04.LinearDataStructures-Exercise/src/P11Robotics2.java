@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class P11Robotics2 { // TODO solution gets 80/100 with 1 time exceed
+public class P11Robotics2 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -19,9 +19,6 @@ public class P11Robotics2 { // TODO solution gets 80/100 with 1 time exceed
 
         for (int i = 0; i < tokens.length; i++) {
             String[] robotInfo = tokens[i].split("-");
-
-//            String robotName = robotInfo[0];
-//            int requiredSecondsToFinishTask = Integer.parseInt(robotInfo[1]);
 
             Robot2 currentRobot = new Robot2(robotInfo[0], Integer.parseInt(robotInfo[1]), 1 + i);
             robots.add(currentRobot);
@@ -40,11 +37,8 @@ public class P11Robotics2 { // TODO solution gets 80/100 with 1 time exceed
             boolean taskTaken = false;
             for (int index = 0; index < robots.size(); index++) {
                 taskTaken = robots.get(index).getReadyToWorkTime() <= secondCounter;
-                //if robots "readyToWorkTime" is less than
                 if (taskTaken) {
                     System.out.printf("%s - %s [%s]%n", robots.get(index).getName(), tasksQueue.peek(), printFormat.format(startTime.plusSeconds(secondCounter)));
-//                    System.out.println(robots.get(index).getName() + " - " + tasksQueue.peek() + " " +
-//                            "[" + printFormat.format(startTime.plusSeconds(secondCounter)) + "]"); // faster than System.out.printf
 
                     robots.get(index).setReadyToWorkTime(robots.get(index).getReadyToWorkTime() + robots.get(index).getTimeToExecuteTask());
                     tasksQueue.remove();
